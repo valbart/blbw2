@@ -43,10 +43,9 @@ public:
               void (*saveBestMove)(movement&),
 			  bidiarray <Sint32> score)
             : _blobs(blobs),_holes(holes), _current_player(current_player), _saveBestMove(saveBestMove),
-			  scoreActuel(0x80000000), score(score), profondeurExplo(4)
+			  scoreActuel(0x80000000), score(score), profondeurExplo(5)
             {
               scoreActuel = 0x80000000;
-              profondeurExplo = 4;
               score.set(0,0,500);
               score.set(1,0,-150);
               score.set(2,0,30);

@@ -43,7 +43,7 @@ Sint32 Strategy::estimateCurrentScore () const {
     for(int x = 0 ; x < 8 ; ++x) {
         for(int y = 0; y < 8 ; ++y) {
             if (_blobs.get(x, y) == (int) _current_player) {
-              currentScore += 100; // Score pour le fait de posséder un blob
+              currentScore += 10000; // Score pour le fait de posséder un blob
               currentScore += score.get(x,y); // Score pour la position du blob
             }
         }
@@ -61,8 +61,9 @@ Sint32 Strategy::estimateCurrentScore () const {
 vector<movement>& Strategy::computeValidMoves (vector<movement>& valid_moves) const {
   for(int oldx = 0 ; oldx < 8 ; ++oldx) {
       for(int oldy = 0; oldy < 8 ; ++oldy) {
+          //cout << _blobs.get(oldx, oldy) << "\n" << endl;
           if (_blobs.get(oldx, oldy) == (int) _current_player) {
-              //iterate on possible destinations
+            //  cout << "Blob en : " << oldx << "," << oldy << " au joueur " << _current_player << "\n" << endl;              //iterate on possible destinations
               for(int newx = std::max(0,oldx-2) ; newx <= std::min(7,oldx+2) ; newx++) {
                   for(int newy = std::max(0,oldy-2) ; newy <= std::min(7, oldy+2) ; newy++) {
                       if (_holes.get(newx, newy)) continue;
@@ -85,6 +86,7 @@ vector<movement>& Strategy::computeValidMoves (vector<movement>& valid_moves) co
 
 // C'est la fonction de parcourt d'arbre :
 void Strategy::computeBestMove () {
+    //cout << "JOUEUR : " << _current_player << "\n" << endl;
     // To be improved...
     // On part avec le plus mauvais score possible.
     Sint32 scoreMax = 0x80000000;
@@ -94,6 +96,7 @@ void Strategy::computeBestMove () {
     } else {
       // Sinon on calcul tous les coups possibles
       vector<movement> mvt_ok;
+      movement best_move;
       computeValidMoves(mvt_ok);
       for (vector<movement>::iterator it = mvt_ok.begin(); it != mvt_ok.end(); ++it) {
         Strategy s(_blobs, _holes, 1 - _current_player, _saveBestMove, *it, score, scoreActuel, profondeurExplo - 1);
@@ -101,9 +104,11 @@ void Strategy::computeBestMove () {
         scoreActuel = - s.getScoreActuel();
         if (scoreActuel >= scoreMax) {
           scoreMax  = scoreActuel;
-          _saveBestMove(*it);
+          //cout << "SCOREMAX : " << scoreActuel << "\n" << endl;
+          best_move = *it;
         }
       }
+      _saveBestMove(best_move);
     }
 
 
