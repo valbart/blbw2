@@ -1,0 +1,81 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{tabularx}
+%\usepackage{a4wide}
+\usepackage[margin=2.cm]{geometry}
+\usepackage{pifont}
+
+\title{Projet blobwar: rapport intermédiaire (1 page)}
+\author{Groupe: ..............................................}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\paragraph{Notice}
+{\em Ce document est à imprimer et compléter, soit à la main (en remplissant le pdf à la main et en 
+le remettant à votre enseignant lors du tournoi)
+soit en complétant le latex.
+De préférence, 
+rendez ce rapport à votre enseignant lors du tournoi; sinon joignez-le à votre archive sur TEIDE.
+\\
+Les réponses doivent être concises et claires.
+Une réponse consiste soit en une case à cocher, soit en un 
+petit texte explicatif. 
+}
+
+\paragraph{Travail réalisé:} \emph{\textbf{Attention:} remplissez le tableau suivant honnêtement 
+en fonction du travail que vous avez réalisé (cochez la réponse appropriée);
+le code sera
+  contrôlé et toute incohérence sera sanctionnée.  }
+
+
+\begin{figure}[htbp]
+\begin{center}
+\begin{tabular}{| l  l || c | c |}
+\hline 
+ & & oui & non \\
+ \hline
+glouton && X & \ding{111} \\
+\hline
+min-max && X & \ding{111} \\
+\hline
+MinMax {\em Anytime} && X & \ding{111} \\
+\hline
+mon code est  stable & & \ding{111} & X\\
+\hline
+\end{tabular}
+\end{center}
+\end{figure}
+
+\begin{center}
+\begin{tabular}{|l||c| c| c| c|}
+\hline
+& 0 & 1 & 2 & 3 \\
+\hline
+Comment estimez vous la qualité (clarté) de votre code ? & \ding{111} & \ding{111} & X & \ding{111}\\
+\hline
+Comment jugez vous la qualité de vos commentaires ?& \ding{111} & \ding{111} & X & \ding{111}\\
+\hline
+Faites vous une utilisation appropriée de la STL ?& \ding{111} & X & \ding{111} & \ding{111}\\
+\hline
+Comment jugez vous la fiabilité de votre programme ? & \ding{111} & \ding{111} & X & \ding{111}\\
+\hline
+\end{tabular}
+\end{center}
+Illustrer  chaque point par un exemple ou un argument (une/deux lignes)
+\begin{itemize}
+\item Clarté du code : le code respecte le squelette proposé même si quelques modifications ont été apporté (modification du constructeur proposé). On retrouve clairement la structure de l'algorithme MinMax.
+\item Commentaires : toutes les méthodes implémentées et les variables ajouté ont été commenté plus ou moins longuement selon leur complexité. 
+\item Utilisation de la STL : STL très peu utilisée pour l'instant, utilisation seulement d'un vecteur et d'un itérateur sur ce vecteur pour parcourir l'ensemble des coups possibles. 
+\item Fiabilité du programme : le programme est fiable (l'IA joue correctement)  sauf pour un cas de bug détecté : lorsque le joueur humain ne peux plus jouer et passe son tour, l'IA boucle sur le même coup (déplacement d'un blob sur une case puis retour sur la case départ).
+\end{itemize}
+
+\noindent{\bf{Autres  commentaires (facultatif): }
+Le MinMax anytime provoque encore un bug : il a pourtant bien été implémenté (on ne sauvegarde un meilleur à un instant t seulement si ce coup est bien un coup pour l'ordinateur et pas un coup simulé pour l'adversaire), cependant un dépassement du temps de calcul provoque systématiquement un bug qui arrête la partie (de type InvalidMove). 
+\vspace*{4cm}
+
+\end{document} 

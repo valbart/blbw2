@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 		}
 	}
 	if(compute_time_IA <= 0)
-		compute_time_IA = 100;
+		compute_time_IA = 1;
 
 
 	Uint32 new_ticks, diff;
