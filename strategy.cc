@@ -44,7 +44,7 @@ Sint32 Strategy::estimateCurrentScore () const {
         for(int y = 0; y < 8 ; ++y) {
             if (_blobs.get(x, y) == (int) _current_player) {
               currentScore += 10000; // Score pour le fait de posséder un blob
-              currentScore += score.get(x,y); // Score pour la position du blob
+              //currentScore += score.get(x,y); // Score pour la position du blob
             }
         }
     }
@@ -100,6 +100,8 @@ void Strategy::computeBestMove () {
       computeValidMoves(mvt_ok);
       for (vector<movement>::iterator it = mvt_ok.begin(); it != mvt_ok.end(); ++it) {
         Strategy s(_blobs, _holes, 1 - _current_player, _saveBestMove, *it, score, scoreActuel, profondeurExplo - 1);
+        //cout << "PROFONDEUR : " << profondeurExplo << "\n" << endl;
+        //cout << "PROFONDEUR : " << s.profondeurExplo << "\n" << endl;
         s.computeBestMove();
         scoreActuel = - s.getScoreActuel();
         if (scoreActuel >= scoreMax) {

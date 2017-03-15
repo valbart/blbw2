@@ -43,7 +43,7 @@ public:
               void (*saveBestMove)(movement&),
 			  bidiarray <Sint32> score)
             : _blobs(blobs),_holes(holes), _current_player(current_player), _saveBestMove(saveBestMove),
-			  scoreActuel(0x80000000), score(score), profondeurExplo(5)
+			  scoreActuel(0x80000000), score(score), profondeurExplo(3)
             {
               scoreActuel = 0x80000000;
               score.set(0,0,500);
@@ -76,7 +76,6 @@ public:
                 }
                 ++i;
               }
-              std::cout << "iiinit ok" << "\n";
 
             }
 
@@ -98,9 +97,9 @@ public:
                 const bidiarray<Sint32> & scoreMat,
                 Sint32 scoreActuel,
                 Sint8 profondeurExplo)
-              : _blobs(blobs),_holes(holes), _current_player(current_player), _saveBestMove(saveBestMove), scoreActuel(scoreActuel), score(scoreMat)
+              : _blobs(blobs),_holes(holes), _current_player(current_player), _saveBestMove(saveBestMove), scoreActuel(scoreActuel), score(scoreMat), profondeurExplo(profondeurExplo)
               {
-                profondeurExplo = profondeurExplo;
+                //profondeurExplo = profondeurExplo;
                 applyMove(move_todo); // on joue tout de suite ce movement
                                       // pour bien avoir la strategy modifié aprés création
               }
